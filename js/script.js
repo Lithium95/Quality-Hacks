@@ -31,8 +31,40 @@ app.config(function() {
 
 
 
-app.controller('QuestionsCTRL', function($scope, $firebaseObject,$rootScope){
-      $rootScope.DevScore = 4; 
+app.controller('QuestionsCTRL', function($scope, $firebaseObject,$rootScope,$state){
+
+  $scope.submit = function(){
+    $state.go('score');
+  }
+
+
+
+
+
+
+
+
+    $scope.bgInit = function(){
+      $(function () {
+        var $slides = $('.home');
+        var colors = ['#1E7F00','#FF5F00', '#440058'];
+        var count = colors.length;
+        var slideshow = function() {
+              console.log('lol');
+              $slides
+                    .css('background-color', colors[Math.floor(Math.random() * count)])
+                    // .css('background','linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("' + images[Math.floor(Math.random() * count)] + '")')
+                    .show(0, function() {
+                          console.log('Change');
+                          setTimeout(slideshow, 2500);
+                    });
+        };
+        slideshow();
+      })
+  }
+        $rootScope.DevScore = 4; 
+
+        $scope.bgInit();
 });
 
 
